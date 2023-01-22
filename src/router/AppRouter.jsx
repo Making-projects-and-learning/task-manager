@@ -8,10 +8,10 @@ import { PublicRoute } from './PublicRoute';
 
 /** Components */
 import { LoginPage, RegisterPage } from '../components/auth';
+import { HomePage } from '../components/home';
 
 /** Custom hooks */
 import { useAuthStore } from '../hooks';
-import { HomePage } from '../components/home';
 
 
 /**
@@ -20,7 +20,7 @@ import { HomePage } from '../components/home';
  */
 export const AppRouter = () => {
 
-	const { id, checking, StartChecking } = useAuthStore();
+	const { uid, checking, StartChecking } = useAuthStore();
 
 	/**
 	 * We initialized the checking of user using the accessToken if
@@ -45,7 +45,7 @@ export const AppRouter = () => {
 					<Route
 						path="/login"
 						element={
-							<PublicRoute isAutenticated={!!id}>
+							<PublicRoute isAutenticated={!!uid}>
 								<LoginPage />
 							</PublicRoute>
 						}
@@ -54,16 +54,16 @@ export const AppRouter = () => {
 					<Route
 						path="/register"
 						element={
-							<PublicRoute isAutenticated={!!id}>
+							<PublicRoute isAutenticated={!!uid}>
 								<RegisterPage />
-							</PublicRoute>
+							</PublicRoute> 
 						}
 					/>
 
 					<Route
 						path="/"
 						element={
-							<PrivateRoute isAutenticated={!!id}>
+							<PrivateRoute isAutenticated={!!uid}>
 								<HomePage />
 							</PrivateRoute>
 						}
