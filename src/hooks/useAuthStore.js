@@ -22,6 +22,8 @@ export const useAuthStore = () => {
 
       const { data: { user, msg } } = await taskManagerApi.post('auth/login', { email, password });
 
+      console.log(user)
+      console.log(msg)
       if (user.token) {
 
         localStorage.setItem('token', user.token);
